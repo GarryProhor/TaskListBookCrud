@@ -6,12 +6,14 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
+
 <div class="container-fluid text-center">
-    <div ><h2>Manage users</h2></div>
+    <div ><h2>Manage books</h2></div>
     <div class="m-2">
         <a class="h3" th:href="@{/books/new}">Add new book</a>
     </div>
 
+    <!--/*@thymesVar id="message" type="JDOMAbout"*/-->
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
     </div>
@@ -35,16 +37,16 @@
                     <td>[[${book.author}]]</td>
                     <td>[[${book.publish}]]</td>
                     <td>
-                        <a class="h4 mr-3" th:href="@{'/books/edit'+${book.id}}">Edit</a>
-                        <a class="h4" th:href="@{'/books/delete'+${book.id}}">Delete</a>
+                        <a class="h4 mr-3" th:href="@{'/books/edit/'+${book.id}}">Edit</a>
+                        <a class="h4" th:href="@{'/books/delete/'+${book.id}}">Delete</a>
                     </td>
                 </tr>
             </th:block>
             </tbody>
         </table>
     </div>
-
 </div>
+
 
 </body>
 </html>
