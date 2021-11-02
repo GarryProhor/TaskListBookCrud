@@ -1,6 +1,6 @@
 package by.prohor.librcrud.controller;
 
-import by.prohor.librcrud.exceptions.BookNotFoundException;
+import by.prohor.librcrud.exceptions.LibraryNotFoundException;
 import by.prohor.librcrud.model.Book;
 import by.prohor.librcrud.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class BookController {
     }
 
     @GetMapping("/books/new")
-    public String showNewForm(Model model){
+    public String showNewFormBook(Model model){
         model.addAttribute("book",new Book());
         model.addAttribute("pageTitle", "Add new book");
         return "book-form";
@@ -42,13 +42,13 @@ public class BookController {
         return "redirect:/books";
     }
     @GetMapping("/books/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
+    public String showEditFormBook(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
         try {
             Book book = bookService.get(id);
             model.addAttribute("book", book);
             model.addAttribute("pageTitle", "Edit book (ID: " + id + ")");
             return "book-form";
-        } catch (BookNotFoundException e) {
+        } catch (LibraryNotFoundException e) {
             ra.addFlashAttribute("message",  e.getMessage());
             return "redirect:/books";
         }
@@ -59,7 +59,7 @@ public class BookController {
         try {
             bookService.delete(id);
             ra.addFlashAttribute("message", "The book ID " + id + " has been deleted");
-        } catch (BookNotFoundException e) {
+        } catch (LibraryNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/books";

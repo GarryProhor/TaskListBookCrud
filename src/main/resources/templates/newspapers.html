@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Newspaper</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+<div class="container-fluid text-center">
+    <div ><h2>Manage Newspapers</h2></div>
+    <div class="m-2">
+        <a class="h3" th:href="@{/newspapers/new}">Add new newspaper</a>
+    </div>
+
+    <!--/*@thymesVar id="message" type="JDOMAbout"*/-->
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Theme</th>
+                <th>Territory</th>
+                <th>Periodicity</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="newspaper : ${listNewspapers}">
+                <tr>
+                    <td>[[${newspaper.id}]]</td>
+                    <td>[[${newspaper.title}]]</td>
+                    <td>[[${newspaper.theme}]]</td>
+                    <td>[[${newspaper.territory}]]</td>
+                    <td>[[${newspaper.periodicity}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/newspapers/edit/'+${newspaper.id}}">Edit</a>
+                        <a class="h4" th:href="@{'/newspapers/delete/'+${newspaper.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

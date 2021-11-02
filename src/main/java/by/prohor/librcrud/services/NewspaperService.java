@@ -1,8 +1,9 @@
 package by.prohor.librcrud.services;
 
+
 import by.prohor.librcrud.exceptions.LibraryNotFoundException;
-import by.prohor.librcrud.model.Book;
-import by.prohor.librcrud.repository.BookRepository;
+import by.prohor.librcrud.model.Newspaper;
+import by.prohor.librcrud.repository.NewspaperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,18 +11,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BookService {
-    @Autowired private  BookRepository repository;
+public class NewspaperService {
+    @Autowired
+    private NewspaperRepository repository;
 
-    public List<Book> listAll(){
-        return (List<Book>) repository.findAll();
+    public List<Newspaper> listAll(){
+        return (List<Newspaper>) repository.findAll();
     }
-    public void save(Book book) {
-        repository.save(book);
+    public void save(Newspaper newspaper) {
+        repository.save(newspaper);
     }
 
-    public Book get(Integer id) throws LibraryNotFoundException {
-        Optional<Book> result = repository.findById(id);
+    public Newspaper get(Integer id) throws LibraryNotFoundException {
+        Optional<Newspaper> result = repository.findById(id);
         if(result.isPresent()){
             return result.get();
         }

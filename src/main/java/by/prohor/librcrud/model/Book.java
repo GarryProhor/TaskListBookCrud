@@ -2,9 +2,8 @@ package by.prohor.librcrud.model;
 
 
 import lombok.Data;
-
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Data
 @Entity
