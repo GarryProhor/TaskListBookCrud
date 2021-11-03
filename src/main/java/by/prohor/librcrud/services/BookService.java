@@ -13,7 +13,10 @@ import java.util.Optional;
 public class BookService {
     @Autowired private  BookRepository repository;
 
-    public List<Book> listAll(){
+    public List<Book> listAll(String keyword){
+        if(keyword != null){
+            return  repository.findAll(keyword);
+        }
         return (List<Book>) repository.findAll();
     }
     public void save(Book book) {

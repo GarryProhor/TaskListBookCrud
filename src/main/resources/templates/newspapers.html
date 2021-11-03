@@ -13,6 +13,17 @@
         <a class="h3" th:href="@{/newspapers/new}">Add new newspaper</a>
     </div>
 
+    <br><br>
+    <div>
+        <form th:action="@{/newspapers}">
+            <input type="text" class="col-sm-4 col-form-label m-2" placeholder="Enter the text to search" th:value="${keyword}" name="keyword" required/>
+
+            <input type="submit" class="btn btn-primary m-2" value="Search"/>
+
+            <input type="button" class="btn btn-secondary m-2" value="Clear" onclick="cancelForm()"/>
+        </form>
+    </div>
+    <br><br>
     <!--/*@thymesVar id="message" type="JDOMAbout"*/-->
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
@@ -48,7 +59,11 @@
         </table>
     </div>
 </div>
-
-
+<span class=""><a th:href="@{'/'}">Home page</a></span>
+<script type="text/javascript">
+    function cancelForm() {
+        window.location="/newspapers";
+    }
+</script>
 </body>
 </html>

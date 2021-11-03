@@ -2,11 +2,10 @@ package by.prohor.librcrud.controller;
 
 
 import by.prohor.librcrud.exceptions.LibraryNotFoundException;
-import by.prohor.librcrud.model.Book;
 import by.prohor.librcrud.model.Newspaper;
-import by.prohor.librcrud.services.BookService;
 import by.prohor.librcrud.services.NewspaperService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +23,10 @@ public class NewspaperController {
 
 
     @GetMapping("/newspapers")
-    public  String showNewspaperList(Model model){
-        List<Newspaper> listNewspapers = newspaperService.listAll();
+    public  String showNewspaperList(Model model, @Param("keyword") String keyword){
+        List<Newspaper> listNewspapers = newspaperService.listAll(keyword);
         model.addAttribute("listNewspapers", listNewspapers);
-
+        model.addAttribute("keyword", keyword);
         return "newspapers";
     }
 

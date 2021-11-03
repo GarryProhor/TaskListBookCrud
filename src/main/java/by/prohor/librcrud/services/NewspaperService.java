@@ -15,7 +15,10 @@ public class NewspaperService {
     @Autowired
     private NewspaperRepository repository;
 
-    public List<Newspaper> listAll(){
+    public List<Newspaper> listAll(String keyword){
+        if(keyword != null){
+            return repository.findAll(keyword);
+        }
         return (List<Newspaper>) repository.findAll();
     }
     public void save(Newspaper newspaper) {

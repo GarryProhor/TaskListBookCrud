@@ -4,6 +4,7 @@ import by.prohor.librcrud.exceptions.LibraryNotFoundException;
 import by.prohor.librcrud.model.Book;
 import by.prohor.librcrud.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +21,11 @@ public class BookController {
 
 
     @GetMapping("/books")
-    public  String showBookList(Model model){
+    public  String showBookList(Model model, @Param("keyword") String keyword){
         //лог2
-        List<Book> listBooks = bookService.listAll();
+        List<Book> listBooks = bookService.listAll(keyword);
         model.addAttribute("listBooks", listBooks);
-
+        model.addAttribute("keyword", keyword);
         return "books";
     }
 
