@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+
 public class BookController {
     @Autowired private  BookService bookService;
 
@@ -22,7 +23,7 @@ public class BookController {
 
     @GetMapping("/books")
     public  String showBookList(Model model, @Param("keyword") String keyword){
-        //лог2
+
         List<Book> listBooks = bookService.listAll(keyword);
         model.addAttribute("listBooks", listBooks);
         model.addAttribute("keyword", keyword);

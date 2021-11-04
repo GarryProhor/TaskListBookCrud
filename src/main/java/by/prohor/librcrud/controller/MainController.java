@@ -9,13 +9,6 @@ public class MainController {
 
     @GetMapping("")
     public String showHomePage(){
-        //лог1
         return "index";
     }
-
-//    @GetMapping("")
-//    public String returnHomePage(){
-//
-//        return "index";
-//    }
 }

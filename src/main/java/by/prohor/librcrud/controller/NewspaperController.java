@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+
 public class NewspaperController {
     @Autowired
     private NewspaperService newspaperService;
